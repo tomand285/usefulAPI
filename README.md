@@ -1,10 +1,10 @@
-# useful API - serverless #
+# useful API #
 
-Creates AWS lambda functions and associated AWS resources for the "usefulapi-serverless" service
+Creates an AWS EC2 Instance running NodeJS and associated AWS resources for the "usefulapi" service
 
 ### What is this repository for? ###
 
-To house all of my one-off API ideas. This is the serverless verison of this API.
+To house all of my one-off API ideas.
 
 ### How do I get set up? ###
 
