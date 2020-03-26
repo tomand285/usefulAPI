@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Metadata:
   License: Apache-2.0
-Description: 'AWS CloudFormation will create an EC2 instance and deploy the useful API in US-EAST-1. AWS beanstalk can be used as a quick alternative.'
+Description: 'AWS CloudFormation will create an EC2 instance and deploy the useful API. AWS beanstalk can be used as a quick alternative.'
 Parameters:
   InstanceType:
     Description: WebServer EC2 instance type
