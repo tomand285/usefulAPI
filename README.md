@@ -1,6 +1,6 @@
 # useful API #
 
-Creates an AWS EC2 Instance running NodeJS and associated AWS resources for the "usefulapi" service
+Creates an AWS EC2 Instance running NodeJS and associated AWS resources for the "usefulapi" service. Please note that I am not following best practices for security as it is just 1 instance in the default settings.
 
 ### What is this repository for? ###
 
@@ -8,15 +8,7 @@ To house all of my one-off API ideas.
 
 ### How do I get set up? ###
 
-* Follow [this guide](https://serverless.com/framework/docs/getting-started/) to get the initial Serverless Framework set up.
-* Run the following command:
-```
-serverless install --url https://github.com/tomand285/usefulAPI-serverless
-```
-* Go into the new dir and run:
-``
-sls deploy
-``
+* Run the Cloudformation template using either the CLI or AWS console: EC2Instance-usefulAPI.yaml
 
 ### Services ###
 * convert:
