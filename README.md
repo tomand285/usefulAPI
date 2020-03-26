@@ -9,7 +9,7 @@ To house all of my one-off API ideas.
 ### How do I get set up? ###
 
 * Run the Cloudformation template using either the CLI or AWS console: EC2Instance-usefulAPI.yaml
-* Please note the the startup script will take some time to run and is still running after the stack is finished creating. I noticed that about 5 minutes should be enough time before you try hitting the API. If the ELB does not work at first, give it a few minutes because it is being set to InService after the CF is done.
+* Please note that the startup script will take some time to run and is still running after the stack is finished creating. I noticed that about 5 minutes should be enough time before you try hitting the API. If the ELB does not work at first, give it a few minutes because it is being set to InService after the CFN is done.
 
 ### Services ###
 * convert:
