@@ -16,17 +16,18 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       SecurityGroups: 
         - !Ref InstanceSecurityGroup
-      KeyName: atomko
       ImageId: ami-0fc61db8544a617ed
       UserData:
         Fn::Base64: 
+          #Debug with /var/log/cloud-init-output.log
           !Sub |
             #!/bin/bash -xe
             yum update -y
             yum install git -y
             git clone https://github.com/tomand285/usefulAPI.git
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-            . ~/.nvm/nvm.sh
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm install node
             cd usefulAPI
             npm install
@@ -37,7 +38,7 @@ Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable SSH access via port 22
+      GroupDescription: Enable tcp access via port 3000
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3000
@@ -47,14 +48,24 @@ Resources:
           FromPort: 3000
           ToPort: 3000
           CidrIpv6: "::/0"
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: "0.0.0.0/0" 
+  InstanceLoadBalancer:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      AvailabilityZones:
+      - "us-east-1b"
+      Instances:
+      - !Ref EC2Instance
+      Listeners:
+      - LoadBalancerPort: '80'
+        InstancePort: '3000'
+        Protocol: HTTP
 Outputs:
   InstanceId:
     Description: InstanceId of the newly created EC2 instance
     Value: !Ref 'EC2Instance'
   PublicIP:
-    Description: Public IP address of the newly created EC2 instance
+    Description: Public IP address of the newly created EC2 instance, use port 3000
     Value: !GetAtt [EC2Instance, PublicIp]
+  ELB:
+    Description: Public DNSName of the newly created ELB to the EC2 instance
+    Value: !GetAtt [InstanceLoadBalancer, DNSName]

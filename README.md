@@ -1,6 +1,6 @@
 # useful API #
 
-Creates an AWS EC2 Instance running NodeJS and associated AWS resources for the "usefulapi" service. Please note that I am not following best practices for security as it is just 1 instance in the default settings.
+Creates an AWS EC2 Instance running NodeJS and associated AWS resources for the "usefulapi" service. Please note that I am not following best practices for security because I am only using the default subnet and VPC with only 1 instance and no auto scaling. I could also force everyone to use the ELB but am not.
 
 ### What is this repository for? ###
 
@@ -9,13 +9,14 @@ To house all of my one-off API ideas.
 ### How do I get set up? ###
 
 * Run the Cloudformation template using either the CLI or AWS console: EC2Instance-usefulAPI.yaml
+* Please note the the startup script will take some time to run and is still running after the stack is finished creating. I noticed that about 5 minutes should be enough time before you try hitting the API. If the ELB does not work at first, give it a few minutes because it is being set to InService after the CF is done.
 
 ### Services ###
 * convert:
     * Converts an Image to Base64
     * Endpoint:
         ```
-        POST https://bfhzdjfhr8.execute-api.us-east-1.amazonaws.com/dev/convert
+        POST http://usefulapi-instance-zq8eve4su3ax-692985434.us-east-1.elb.amazonaws.com/convert
         ```
     * Body:
         ```
