@@ -24,7 +24,6 @@ app.use(function(req, res, next) {
 // error handlers
 process.on('uncaughtException', function(err){
     console.log(err.stack);
-    log.fatal(err.stack);
 });
 
 // development error handler

@@ -17,7 +17,7 @@ To house all of my one-off API ideas.
     * Converts an Image to Base64
     * Endpoint:
         ```
-        POST http://usefulapi-instance-zq8eve4su3ax-692985434.us-east-1.elb.amazonaws.com/convert
+        POST http://UsefulAPI-Instance-16INGOG725HYN-1316259238.us-east-1.elb.amazonaws.com/convert
         ```
     * Body:
         ```
